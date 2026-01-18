@@ -10,29 +10,30 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   size = 'md' 
 }) => {
   const sizeClasses = {
-    sm: 'w-8 h-8 border-2',
-    md: 'w-12 h-12 border-3',
-    lg: 'w-16 h-16 border-4',
+    sm: 'w-10 h-10 border-3',
+    md: 'w-14 h-14 border-4',
+    lg: 'w-20 h-20 border-4',
   };
 
   const iconSizes = {
-    sm: 'text-base',
-    md: 'text-xl',
-    lg: 'text-2xl',
+    sm: 'text-xl',
+    md: 'text-2xl',
+    lg: 'text-4xl',
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-5">
+    <div className="flex flex-col items-center justify-center gap-6">
       <div className="relative">
         <div
           className={`${sizeClasses[size]} border-orange-200 border-t-orange-500 rounded-full animate-spin`}
+          style={{ borderStyle: 'solid' }}
         />
         <div className="absolute inset-0 flex items-center justify-center">
           <span className={iconSizes[size]}>🍳</span>
         </div>
       </div>
       {message && (
-        <p className="text-gray-500 text-base font-medium animate-pulse">{message}</p>
+        <p className="text-gray-600 text-lg font-medium animate-pulse">{message}</p>
       )}
     </div>
   );

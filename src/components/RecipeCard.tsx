@@ -25,8 +25,8 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, isSelected, onClick }) 
 
   return (
     <div
-      className={`recipe-card h-full flex flex-col ${
-        isSelected ? 'ring-4 ring-orange-500 ring-offset-2' : ''
+      className={`recipe-card ${
+        isSelected ? 'ring-4 ring-orange-500 ring-offset-4' : ''
       }`}
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
@@ -46,7 +46,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, isSelected, onClick }) 
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-orange-100 to-orange-200">
-            <span className="text-6xl">🍽️</span>
+            <span className="text-7xl">🍽️</span>
           </div>
         )}
 
@@ -58,9 +58,9 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, isSelected, onClick }) 
         />
 
         {/* Match Badge */}
-        <div className="absolute top-4 left-4">
+        <div className="absolute top-5 left-5">
           <span
-            className={`px-3 py-1.5 rounded-full text-xs font-bold border ${getMatchColor()}`}
+            className={`px-4 py-2 rounded-full text-sm font-bold border-2 ${getMatchColor()}`}
           >
             {matchPercentage}% match
           </span>
@@ -68,9 +68,9 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, isSelected, onClick }) 
 
         {/* Selected Indicator */}
         {isSelected && (
-          <div className="absolute top-4 right-4 w-9 h-9 bg-orange-500 rounded-full flex items-center justify-center shadow-lg animate-fade-in">
+          <div className="absolute top-5 right-5 w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center shadow-lg animate-fade-in">
             <svg
-              className="w-5 h-5 text-white"
+              className="w-6 h-6 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -87,13 +87,13 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, isSelected, onClick }) 
 
         {/* Hover action hint */}
         <div
-          className={`absolute bottom-4 left-4 right-4 transition-all duration-300 ${
+          className={`absolute bottom-5 left-5 right-5 transition-all duration-300 ${
             isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
-          <span className="text-white text-sm font-semibold flex items-center gap-2">
+          <span className="text-white font-semibold flex items-center gap-2 text-base">
             View Recipe Details
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </span>
@@ -101,16 +101,16 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, isSelected, onClick }) 
       </div>
 
       {/* Content */}
-      <div className="p-5 flex-1 flex flex-col">
-        <h3 className="font-bold text-gray-800 text-lg mb-3 line-clamp-2 leading-snug">
+      <div className="p-6 flex-1 flex flex-col">
+        <h3 className="font-bold text-gray-900 text-lg mb-4 line-clamp-2 leading-snug">
           {recipe.title}
         </h3>
 
         {/* Ingredient Stats */}
-        <div className="flex items-center gap-4 mb-4">
-          <div className="flex items-center gap-2 text-green-600 bg-green-50 px-3 py-1.5 rounded-lg">
+        <div className="flex flex-wrap items-center gap-3 mb-5">
+          <div className="flex items-center gap-2 text-green-700 bg-green-50 px-4 py-2.5 rounded-xl border border-green-100">
             <svg
-              className="w-4 h-4"
+              className="w-5 h-5"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -120,12 +120,12 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, isSelected, onClick }) 
                 clipRule="evenodd"
               />
             </svg>
-            <span className="text-sm font-semibold">{recipe.usedIngredientCount} have</span>
+            <span className="text-sm font-bold">{recipe.usedIngredientCount} have</span>
           </div>
           {recipe.missedIngredientCount > 0 && (
-            <div className="flex items-center gap-2 text-orange-600 bg-orange-50 px-3 py-1.5 rounded-lg">
+            <div className="flex items-center gap-2 text-orange-700 bg-orange-50 px-4 py-2.5 rounded-xl border border-orange-100">
               <svg
-                className="w-4 h-4"
+                className="w-5 h-5"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -135,26 +135,26 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, isSelected, onClick }) 
                   clipRule="evenodd"
                 />
               </svg>
-              <span className="text-sm font-semibold">{recipe.missedIngredientCount} need</span>
+              <span className="text-sm font-bold">{recipe.missedIngredientCount} need</span>
             </div>
           )}
         </div>
 
         {/* Missing Ingredients Preview */}
         {recipe.missedIngredients.length > 0 && (
-          <div className="mt-auto pt-4 border-t border-gray-100">
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Missing:</p>
-            <div className="flex flex-wrap gap-1.5">
+          <div className="mt-auto pt-5 border-t-2 border-gray-100">
+            <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Missing Ingredients</p>
+            <div className="flex flex-wrap gap-2">
               {recipe.missedIngredients.slice(0, 3).map((ing) => (
                 <span
                   key={ing.id}
-                  className="px-2.5 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-medium"
+                  className="px-3 py-1.5 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium"
                 >
                   {ing.name}
                 </span>
               ))}
               {recipe.missedIngredients.length > 3 && (
-                <span className="px-2.5 py-1 text-gray-400 text-xs font-medium">
+                <span className="px-3 py-1.5 text-gray-400 text-sm font-medium">
                   +{recipe.missedIngredients.length - 3} more
                 </span>
               )}

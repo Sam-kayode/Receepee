@@ -16,8 +16,8 @@ body {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #faf7f5;
-  color: #1f2937;
+  background-color: #f8fafc;
+  color: #1e293b;
   line-height: 1.6;
 }
 
@@ -30,17 +30,25 @@ body {
   display: none;
 }
 
-/* Custom Component Classes */
+/* Custom Card Base */
+.card {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+/* Ingredient Tag */
 .ingredient-tag {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  gap: 8px;
+  padding: 10px 16px;
   background-color: #fff7ed;
   color: #c2410c;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 500;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
   transition: all 0.2s ease;
   border: 1px solid #fed7aa;
 }
@@ -50,43 +58,48 @@ body {
   border-color: #fdba74;
 }
 
+/* Recipe Card */
 .recipe-card {
   background-color: white;
-  border-radius: 1.25rem;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: all 0.3s ease;
   cursor: pointer;
-  border: 1px solid #f3f4f6;
+  border: 1px solid #e2e8f0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .recipe-card:hover {
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  transform: translateY(-4px);
-  border-color: #e5e7eb;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px);
+  border-color: #cbd5e1;
 }
 
+/* Primary Button */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 8px;
   background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
   color: white;
   font-weight: 600;
-  padding: 0.875rem 1.75rem;
-  border-radius: 0.875rem;
-  box-shadow: 0 4px 14px 0 rgb(249 115 22 / 0.4);
+  padding: 16px 28px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px 0 rgba(249, 115, 22, 0.4);
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
-  font-size: 0.9375rem;
+  font-size: 15px;
 }
 
 .btn-primary:hover:not(:disabled) {
   background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
-  box-shadow: 0 6px 20px 0 rgb(249 115 22 / 0.5);
-  transform: translateY(-1px);
+  box-shadow: 0 6px 20px 0 rgba(249, 115, 22, 0.5);
+  transform: translateY(-2px);
 }
 
 .btn-primary:disabled {
@@ -95,24 +108,40 @@ body {
   transform: none;
 }
 
+/* Input Field */
 .input-field {
   width: 100%;
-  padding: 1rem 1.25rem;
-  background-color: white;
-  border: 2px solid #e5e7eb;
-  border-radius: 0.875rem;
+  padding: 18px 24px;
+  background-color: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
   transition: all 0.2s ease;
   outline: none;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 .input-field:focus {
   border-color: #f97316;
-  box-shadow: 0 0 0 4px rgb(249 115 22 / 0.1);
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
+  background-color: white;
 }
 
 .input-field::placeholder {
-  color: #9ca3af;
+  color: #94a3b8;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: #64748b;
+  line-height: 1.6;
 }
 
 /* Animation Keyframes */
@@ -124,7 +153,7 @@ body {
 @keyframes slideUp {
   from { 
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -134,12 +163,12 @@ body {
 
 @keyframes pulseSubtle {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  50% { opacity: 0.6; }
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-10px); }
 }
 
 .animate-fade-in {
@@ -147,7 +176,7 @@ body {
 }
 
 .animate-slide-up {
-  animation: slideUp 0.4s ease-out forwards;
+  animation: slideUp 0.5s ease-out forwards;
 }
 
 .animate-pulse-subtle {
@@ -164,24 +193,4 @@ body {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-/* Container */
-.container-app {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .container-app {
-    padding: 0 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container-app {
-    padding: 0 3rem;
-  }
 }

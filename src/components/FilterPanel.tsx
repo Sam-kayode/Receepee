@@ -15,13 +15,13 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   filteredResults,
 }) => {
   return (
-    <div className="bg-white rounded-2xl shadow-md border border-gray-100 p-5 md:p-6 mb-8">
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+    <div className="card p-6 sm:p-8 mb-8">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         {/* Results Count */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-amber-100 rounded-2xl flex items-center justify-center">
             <svg
-              className="w-5 h-5 text-orange-600"
+              className="w-7 h-7 text-orange-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -35,18 +35,18 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
             </svg>
           </div>
           <div>
-            <span className="font-bold text-gray-800 text-lg">Filter Results</span>
-            <p className="text-sm text-gray-500">
-              Showing {filteredResults} of {totalResults} recipes
+            <h3 className="font-bold text-gray-900 text-xl">Filter Results</h3>
+            <p className="text-gray-500 text-base mt-0.5">
+              Showing <span className="font-semibold text-orange-600">{filteredResults}</span> of {totalResults} recipes
             </p>
           </div>
         </div>
 
         {/* Filter Controls */}
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-5">
           {/* Missing Ingredients Filter */}
-          <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+          <div className="flex flex-col gap-2">
+            <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">
               Max Missing Ingredients
             </label>
             <select
@@ -57,7 +57,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                   maxMissingIngredients: Number(e.target.value),
                 })
               }
-              className="px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm font-medium text-gray-700 min-w-[160px] cursor-pointer"
+              className="px-5 py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-base font-medium text-gray-700 min-w-[200px] cursor-pointer hover:border-gray-300 transition-colors"
             >
               <option value={0}>0 (exact match)</option>
               <option value={1}>1 ingredient</option>
@@ -69,8 +69,8 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
           </div>
 
           {/* Sort By */}
-          <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+          <div className="flex flex-col gap-2">
+            <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">
               Sort By
             </label>
             <select
@@ -81,7 +81,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                   sortBy: e.target.value as SearchFilters['sortBy'],
                 })
               }
-              className="px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm font-medium text-gray-700 min-w-[160px] cursor-pointer"
+              className="px-5 py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-base font-medium text-gray-700 min-w-[200px] cursor-pointer hover:border-gray-300 transition-colors"
             >
               <option value="relevance">Relevance</option>
               <option value="missedIngredients">Fewest Missing</option>

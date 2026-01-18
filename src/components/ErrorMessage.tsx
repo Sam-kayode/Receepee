@@ -12,10 +12,10 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
   onRetry 
 }) => {
   return (
-    <div className="bg-red-50 border-2 border-red-100 rounded-2xl p-8 text-center">
-      <div className="w-16 h-16 mx-auto mb-5 bg-red-100 rounded-full flex items-center justify-center">
+    <div className="card bg-red-50 border-2 border-red-100 p-10 sm:p-12 text-center">
+      <div className="w-20 h-20 mx-auto mb-6 bg-red-100 rounded-full flex items-center justify-center">
         <svg
-          className="w-8 h-8 text-red-500"
+          className="w-10 h-10 text-red-500"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -28,14 +28,14 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
           />
         </svg>
       </div>
-      <h3 className="text-xl font-bold text-red-800 mb-3">{title}</h3>
-      <p className="text-red-600 mb-6 leading-relaxed">{message}</p>
+      <h3 className="text-2xl font-bold text-red-800 mb-4">{title}</h3>
+      <p className="text-red-600 mb-8 text-lg leading-relaxed max-w-md mx-auto">{message}</p>
       {onRetry && (
         <button
           onClick={onRetry}
-          className="inline-flex items-center gap-2 px-6 py-3 bg-red-100 hover:bg-red-200 text-red-700 rounded-xl font-semibold transition-colors"
+          className="inline-flex items-center gap-3 px-8 py-4 bg-red-100 hover:bg-red-200 text-red-700 rounded-xl font-bold text-lg transition-colors"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg>
           Try Again
