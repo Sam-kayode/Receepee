@@ -18,14 +18,14 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, isSelected, onClick }) 
   );
 
   const getMatchColor = () => {
-    if (matchPercentage >= 80) return 'text-green-600 bg-green-100';
-    if (matchPercentage >= 50) return 'text-yellow-600 bg-yellow-100';
-    return 'text-red-600 bg-red-100';
+    if (matchPercentage >= 80) return 'text-green-700 bg-green-100 border-green-200';
+    if (matchPercentage >= 50) return 'text-yellow-700 bg-yellow-100 border-yellow-200';
+    return 'text-orange-700 bg-orange-100 border-orange-200';
   };
 
   return (
     <div
-      className={`recipe-card animate-fade-in ${
+      className={`recipe-card h-full flex flex-col ${
         isSelected ? 'ring-4 ring-orange-500 ring-offset-2' : ''
       }`}
       onClick={onClick}
@@ -52,15 +52,15 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, isSelected, onClick }) 
 
         {/* Overlay on hover */}
         <div
-          className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition-opacity duration-300 ${
             isHovered ? 'opacity-100' : 'opacity-0'
           }`}
         />
 
         {/* Match Badge */}
-        <div className="absolute top-3 left-3">
+        <div className="absolute top-4 left-4">
           <span
-            className={`px-2.5 py-1 rounded-full text-xs font-bold ${getMatchColor()}`}
+            className={`px-3 py-1.5 rounded-full text-xs font-bold border ${getMatchColor()}`}
           >
             {matchPercentage}% match
           </span>
@@ -68,7 +68,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, isSelected, onClick }) 
 
         {/* Selected Indicator */}
         {isSelected && (
-          <div className="absolute top-3 right-3 w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center shadow-lg animate-fade-in">
+          <div className="absolute top-4 right-4 w-9 h-9 bg-orange-500 rounded-full flex items-center justify-center shadow-lg animate-fade-in">
             <svg
               className="w-5 h-5 text-white"
               fill="none"
@@ -87,25 +87,28 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, isSelected, onClick }) 
 
         {/* Hover action hint */}
         <div
-          className={`absolute bottom-3 left-3 right-3 transition-all duration-300 ${
+          className={`absolute bottom-4 left-4 right-4 transition-all duration-300 ${
             isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
-          <span className="text-white text-sm font-medium">
-            Click to view details →
+          <span className="text-white text-sm font-semibold flex items-center gap-2">
+            View Recipe Details
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </span>
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-4">
-        <h3 className="font-bold text-gray-800 text-lg mb-2 line-clamp-2 leading-tight">
+      <div className="p-5 flex-1 flex flex-col">
+        <h3 className="font-bold text-gray-800 text-lg mb-3 line-clamp-2 leading-snug">
           {recipe.title}
         </h3>
 
         {/* Ingredient Stats */}
-        <div className="flex items-center gap-4 text-sm">
-          <div className="flex items-center gap-1.5 text-green-600">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-2 text-green-600 bg-green-50 px-3 py-1.5 rounded-lg">
             <svg
               className="w-4 h-4"
               fill="currentColor"
@@ -117,10 +120,10 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, isSelected, onClick }) 
                 clipRule="evenodd"
               />
             </svg>
-            <span>{recipe.usedIngredientCount} have</span>
+            <span className="text-sm font-semibold">{recipe.usedIngredientCount} have</span>
           </div>
           {recipe.missedIngredientCount > 0 && (
-            <div className="flex items-center gap-1.5 text-orange-600">
+            <div className="flex items-center gap-2 text-orange-600 bg-orange-50 px-3 py-1.5 rounded-lg">
               <svg
                 className="w-4 h-4"
                 fill="currentColor"
@@ -132,26 +135,26 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, isSelected, onClick }) 
                   clipRule="evenodd"
                 />
               </svg>
-              <span>{recipe.missedIngredientCount} need</span>
+              <span className="text-sm font-semibold">{recipe.missedIngredientCount} need</span>
             </div>
           )}
         </div>
 
         {/* Missing Ingredients Preview */}
         {recipe.missedIngredients.length > 0 && (
-          <div className="mt-3 pt-3 border-t border-gray-100">
-            <p className="text-xs text-gray-500 mb-1.5">Missing:</p>
-            <div className="flex flex-wrap gap-1">
+          <div className="mt-auto pt-4 border-t border-gray-100">
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Missing:</p>
+            <div className="flex flex-wrap gap-1.5">
               {recipe.missedIngredients.slice(0, 3).map((ing) => (
                 <span
                   key={ing.id}
-                  className="px-2 py-0.5 bg-orange-50 text-orange-700 rounded text-xs"
+                  className="px-2.5 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-medium"
                 >
                   {ing.name}
                 </span>
               ))}
               {recipe.missedIngredients.length > 3 && (
-                <span className="px-2 py-0.5 text-gray-500 text-xs">
+                <span className="px-2.5 py-1 text-gray-400 text-xs font-medium">
                   +{recipe.missedIngredients.length - 3} more
                 </span>
               )}

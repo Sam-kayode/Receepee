@@ -15,22 +15,22 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({
 }) => {
   if (recipes.length === 0) {
     return (
-      <div className="text-center py-16">
-        <div className="w-24 h-24 mx-auto mb-6 bg-orange-100 rounded-full flex items-center justify-center">
-          <span className="text-5xl">🔍</span>
+      <div className="text-center py-16 md:py-24">
+        <div className="w-28 h-28 mx-auto mb-8 bg-orange-100 rounded-full flex items-center justify-center">
+          <span className="text-6xl">🔍</span>
         </div>
-        <h3 className="text-xl font-semibold text-gray-700 mb-2">
+        <h3 className="text-2xl font-bold text-gray-800 mb-3">
           No recipes found
         </h3>
-        <p className="text-gray-500 max-w-md mx-auto">
-          Try adjusting your filters or adding different ingredients to find more recipes.
+        <p className="text-gray-500 max-w-md mx-auto text-lg">
+          Try adjusting your filters or adding different ingredients to discover more recipes.
         </p>
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
       {recipes.map((recipe, index) => (
         <div
           key={recipe.id}

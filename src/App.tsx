@@ -68,33 +68,35 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-50">
+    <div className="min-h-screen bg-gradient-to-b from-orange-50 via-white to-orange-50/30 flex flex-col">
       <Header />
       
-      <main className="container mx-auto px-4 py-8 max-w-7xl">
+      <main className="flex-1 container-app py-8 md:py-12">
         {/* Ingredient Input Section */}
-        <IngredientInput
-          ingredients={ingredients}
-          onAddIngredient={handleAddIngredient}
-          onRemoveIngredient={handleRemoveIngredient}
-          onClearAll={handleClearIngredients}
-        />
+        <section className="mb-10 md:mb-12">
+          <IngredientInput
+            ingredients={ingredients}
+            onAddIngredient={handleAddIngredient}
+            onRemoveIngredient={handleRemoveIngredient}
+            onClearAll={handleClearIngredients}
+          />
+        </section>
 
         {/* Results Section */}
         {ingredients.length === 0 ? (
           <EmptyState />
         ) : (
-          <>
+          <section>
             {/* Loading State */}
             {isLoading && (
-              <div className="py-16">
+              <div className="py-20">
                 <LoadingSpinner message="Finding delicious recipes for you..." size="lg" />
               </div>
             )}
 
             {/* Error State */}
             {isError && (
-              <div className="max-w-md mx-auto">
+              <div className="max-w-lg mx-auto py-12">
                 <ErrorMessage
                   title="Failed to fetch recipes"
                   message={
@@ -129,15 +131,21 @@ function App() {
 
                 {/* No Results After Filtering */}
                 {recipes.length > 0 && filteredRecipes.length === 0 && (
-                  <div className="text-center py-8">
+                  <div className="text-center py-12 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                    <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+                      <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">No matching recipes</h3>
                     <p className="text-gray-500">
-                      No recipes match your current filters. Try increasing the maximum missing ingredients.
+                      Try increasing the maximum missing ingredients to see more results.
                     </p>
                   </div>
                 )}
               </>
             )}
-          </>
+          </section>
         )}
       </main>
 
@@ -150,26 +158,30 @@ function App() {
       )}
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-8 mt-16">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="text-2xl">🍳</span>
-            <span className="text-xl font-bold text-white">Receepee</span>
+      <footer className="bg-gray-900 text-gray-400 mt-auto">
+        <div className="container-app py-10 md:py-12">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center">
+                <span className="text-xl">🍳</span>
+              </div>
+              <div>
+                <span className="text-xl font-bold text-white">Receepee</span>
+                <p className="text-sm text-gray-500">Your smart kitchen companion</p>
+              </div>
+            </div>
+            <p className="text-sm text-gray-500">
+              Powered by{' '}
+              <a
+                href="https://spoonacular.com/food-api"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-orange-400 hover:text-orange-300 transition-colors font-medium"
+              >
+                Spoonacular API
+              </a>
+            </p>
           </div>
-          <p className="text-sm mb-2">
-            Your smart kitchen companion for finding perfect recipes
-          </p>
-          <p className="text-xs text-gray-500">
-            Powered by{' '}
-            <a
-              href="https://spoonacular.com/food-api"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-orange-400 hover:text-orange-300"
-            >
-              Spoonacular API
-            </a>
-          </p>
         </div>
       </footer>
     </div>
